@@ -1,3 +1,3 @@
 # Labs Temporal Go
 
-- Cloned from <https://github.com/jamillosantos/server-temporal>
+- Cloned from <https://github.com/anhgeeky/labs-temporal-go>

@@ -72,6 +72,10 @@ func (w *Worker) Listen(_ context.Context) error {
 	return w.w.Start()
 }
 
+func (w *Worker) Run(_ context.Context) error {
+	return w.w.Run(worker.InterruptCh())
+}
+
 func (w *Worker) Close(_ context.Context) error {
 	w.w.Stop()
 	return nil

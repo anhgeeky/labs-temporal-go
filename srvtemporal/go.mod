@@ -1,4 +1,4 @@
-module github.com/jamillosantos/server-temporal
+module github.com/anhgeeky/labs-temporal-go
 
 go 1.21.4
 
