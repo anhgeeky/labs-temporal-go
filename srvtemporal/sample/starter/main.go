@@ -20,12 +20,23 @@ func main() {
 		log.Fatalln("Unable to create client", err)
 	}
 	defer c.Close()
+	ctx := context.Background()
 
 	workflowID := "BANK_TRANSFER-" + fmt.Sprintf("%d", time.Now().Unix())
 
 	workflowOptions := client.StartWorkflowOptions{
 		ID:        workflowID,
 		TaskQueue: "taskQueueSample",
+	}
+
+	err = c.UpdateWorkerBuildIdCompatibility(ctx, &client.UpdateWorkerBuildIdCompatibilityOptions{
+		TaskQueue: "taskQueueSample",
+		Operation: &client.BuildIDOpAddNewIDInNewDefaultSet{
+			BuildID: "1.0",
+		},
+	})
+	if err != nil {
+		log.Fatalln("Unable to update worker build id compatibility", err)
 	}
 
 	we, err := c.ExecuteWorkflow(context.Background(), workflowOptions, sample.Workflow, "Temporal")

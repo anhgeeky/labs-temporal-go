@@ -31,7 +31,10 @@ func main() {
 	log.Println("Temporal client connected")
 	defer c.Close()
 
-	cfg := srvtemporal.PlatformConfig{}
+	cfg := srvtemporal.PlatformConfig{
+		BuildID:                 "1.0",
+		UseBuildIDForVersioning: true,
+	}
 	var f srvtemporal.Registerer = NewRegisterer{}
 	w, _ := srvtemporal.NewWorker(f, cfg,
 		srvtemporal.WithClient(c),
